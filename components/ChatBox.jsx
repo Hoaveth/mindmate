@@ -68,7 +68,7 @@ const ChatBox = ({ assistant, options }) => {
             return (
               <div
                 key={index}
-                className="bg-gray-100 p-2 rounded-xl text-sm text-black"
+                className="chat bg-gray-100 p-2 rounded-xl text-sm text-black"
                 dangerouslySetInnerHTML={{ __html: chat }}
               ></div>
             );

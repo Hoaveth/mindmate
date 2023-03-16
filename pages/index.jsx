@@ -19,7 +19,8 @@ const options = [
       "Give the MindMate assistant any task or question that you have.",
   },
   {
-    value: "Smart Recruiter",
+    value:
+      "Smart Recruiter, kindly review this resume and give points to improve",
     label: "Smart Recruiter",
     instruction: "Paste your whole resume in the text box.",
   },

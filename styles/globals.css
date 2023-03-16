@@ -89,6 +89,29 @@ a {
   text-decoration: none;
 }
 
+
+.chatbox {
+  max-height: 700px;
+  overflow-y: auto;
+  scrollbar-width: thin !important;
+}
+
+.chat {
+  max-width: fit-content;
+  overflow-wrap: break-word;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -127,7 +150,7 @@ a {
 
   .chatbox {
     margin: 10px;
-    max-height: 280px;
+    max-height: 350px;
     overflow-y: auto;
   }
 
