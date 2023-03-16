@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
 
 const ChatBox = ({ assistant, options }) => {
   const [message, setMessage] = useState();
@@ -11,30 +12,76 @@ const ChatBox = ({ assistant, options }) => {
     if (assistant) {
       const value = options.filter((item) => item.value === assistant);
       setSelectedOption(...value);
+      setChats([]);
     } else {
       setSelectedOption(options[0]);
     }
   }, [assistant]);
 
   const sendMessage = () => {
+    setLoading(true);
+
+    if (message) {
+      setChats([...chats, message]);
+      fetchData();
+    }
+  };
+
+  const fetchData = async () => {
+    const formData = {
+      model: GPT_MODEL,
+      messages: [
+        {
+          role: GPT_ROLE,
+          content: GPT_CONDITIONER + `${selectedOption.value}, ` + message,
+        },
+      ],
+    };
+
+    const apiURL = process.env.NEXT_PUBLIC_CHATGPT_API;
+
+    const res = await fetch(apiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const json = await res.json();
+    const response =
+      `<strong>MindMate:</strong>` + json.choices[0]?.message.content;
+    const chatWithoutQuotes = response.replace(/"/g, "");
+
+    setChats([...chats, message, chatWithoutQuotes]);
     setMessage("");
-    setChats([...chats, message]);
+    setLoading(false);
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg mt-10  p-8 max-w-lg mx-auto">
+    <div className="chatbox bg-white shadow-lg rounded-lg mt-10  p-6 max-w-lg mx-auto">
       <div className="flex flex-col gap-2">
         <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
           <strong>Instructions:</strong> {selectedOption?.instruction}
         </div>
         {chats.length > 0 &&
-          chats.map((chat) => {
+          chats.map((chat, index) => {
             return (
-              <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
-                {chat}
-              </div>
+              <div
+                key={index}
+                className="bg-gray-100 p-2 rounded-xl text-sm text-black"
+                dangerouslySetInnerHTML={{ __html: chat }}
+              ></div>
             );
           })}
+        {loading ? (
+          <div className="bg-gray-100 p-4 rounded-xl text-sm text-black">
+            <div className="flex items-center justify-start space-x-2">
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+            </div>
+          </div>
+        ) : null}
       </div>
       <div className="flex items-center mt-4">
         <input
@@ -45,7 +92,9 @@ const ChatBox = ({ assistant, options }) => {
           value={message}
         />
         <button
-          className="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center"
+          className={`${
+            loading ? "bg-gray-500" : "bg-blue-500"
+          } text-white rounded-full h-10 w-10 flex items-center justify-center`}
           onClick={() => sendMessage()}
         >
           <svg
@@ -53,10 +102,9 @@ const ChatBox = ({ assistant, options }) => {
             width="18"
             height="18"
             fill="currentColor"
-            class="bi bi-send-fill"
+            className="bi bi-send-fill"
             viewBox="0 0 16 16"
           >
-            {" "}
             <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />{" "}
           </svg>
         </button>
