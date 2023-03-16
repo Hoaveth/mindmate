@@ -94,3 +94,54 @@ a {
     color-scheme: dark;
   }
 }
+
+@media (max-width: 540px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 200px;
+  }
+
+  .text {
+    margin-top: .5rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .repo {
+    cursor: pointer;
+    margin-top: .5rem;
+  }
+
+  .header-text-container {
+    margin-top: 20px;
+  }
+
+  .nav-container {
+    flex: auto;
+    justify-content: center;
+  }
+
+  .chatbox {
+    margin: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  /* CSS styles for screens wider than 768 pixels */
+  .header-text {
+    font-size: 25px;
+    margin-top: 10px;
+  }
+
+  .dropdown {
+    margin-left: 1rem;
+  }
+
+  .dropdown select {
+    margin: 0;
+  }
+}
