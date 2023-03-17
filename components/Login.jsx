@@ -16,19 +16,18 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const login = await loginUser(email, password, setEmail);
 
-      if (login) {
-        setLocalStorageItem(USER_KEY, login.user);
-        setError("");
-        router.push("/");
-      }
-    } catch (error) {
+    setLoading(true);
+    const login = await loginUser(email, password, setEmail);
+
+    if (login.message) {
+      setError(login.message);
       setLoading(false);
-      setError(error.message);
+      return;
     }
+    setLocalStorageItem(USER_KEY, login.user);
+    setError("");
+    router.push("/");
   };
 
   return (

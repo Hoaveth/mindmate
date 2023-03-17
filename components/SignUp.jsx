@@ -16,14 +16,14 @@ function SignUpPage() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    try {
-      // Create a new user with email and password
-      await createUser(displayName, email, password);
-      setError("");
-      router.push("/login");
-    } catch (error) {
-      setError(error.message);
+
+    // Create a new user with email and password
+    const user = await createUser(displayName, email, password);
+    if (user?.message) {
+      setError(user.message);
+      return;
     }
+    router.push("/login");
   };
 
   return (
