@@ -29,7 +29,7 @@ function SignUpPage() {
   return (
     <div className="flex items-center justify-center mt-20">
       <form
-        className="bg-white p-6 rounded-lg shadow-lg"
+        className="bg-white p-6 rounded-lg shadow-lg auth-form"
         onSubmit={handleSignUp}
       >
         <div className="flex justify-center">

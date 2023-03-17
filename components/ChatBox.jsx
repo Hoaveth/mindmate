@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
+import styles from "./styles/Chatbox.module.css";
 
 const ChatBox = ({ assistant, options }) => {
   const [message, setMessage] = useState();
@@ -58,7 +59,9 @@ const ChatBox = ({ assistant, options }) => {
   };
 
   return (
-    <div className="chatbox bg-white shadow-lg rounded-lg mt-10  p-6 max-w-lg mx-auto">
+    <div
+      className={`${styles.chatbox}  bg-white shadow-lg rounded-lg mt-10  p-6 max-w-lg mx-auto`}
+    >
       <div className="flex flex-col gap-2">
         <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
           <strong>Instructions:</strong> {selectedOption?.instruction}
@@ -68,7 +71,7 @@ const ChatBox = ({ assistant, options }) => {
             return (
               <div
                 key={index}
-                className="chat bg-gray-100 p-2 rounded-xl text-sm text-black"
+                className={`${styles.chat} bg-gray-100 p-2 rounded-xl text-sm text-black`}
                 dangerouslySetInnerHTML={{ __html: chat }}
               ></div>
             );

@@ -1,20 +1,35 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
-import { getLocalStorageItem } from "utils/common";
+import { getLocalStorageItem, setLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
 import { useEffect, useState } from "react";
+import { logoutUser } from "lib/auth";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const [displayName, setDisplayName] = useState("Made Possible by @Hoaveth");
+  const [displayName, setDisplayName] = useState("");
+
+  const router = useRouter();
   const user = getLocalStorageItem(USER_KEY);
 
   useEffect(() => {
     const user = getLocalStorageItem(USER_KEY);
-    if (user) {
-      setDisplayName("Hi, " + user.displayName + " 👋");
-    }
+
+    setDisplayName(
+      user ? "Hi, " + user.displayName + " 👋" : "Made Possible by @Hoaveth"
+    );
   }, [user]);
+
+  const signOut = () => {
+    logoutUser();
+    localStorage.removeItem(USER_KEY);
+    router.push("/login");
+  };
+
+  const DynamicButton = dynamic(() => import("./LogoutButton"), {
+    ssr: false,
+  });
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-700 p-6 shadow-md">
@@ -37,15 +52,16 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-        <div className="order-3 lg:order-3">
-          <div className="lg:flex lg:items-center lg:justify-end">
+        <div className="order-3 lg:order-3 max-[450px]:mt-4">
+          <div className="flex justify-between items-center">
             <a
               href="https://tiktok.com/@devdotcode"
               target="_blank"
-              className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+              className="block lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
             >
-              <strong>{displayName}</strong>
+              {displayName}
             </a>
+            {user ? <DynamicButton signOut={signOut} /> : null}
           </div>
         </div>
       </div>
