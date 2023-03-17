@@ -24,6 +24,7 @@ const ChatBox = ({ assistant, options }) => {
     if (message) {
       setChats([...chats, message]);
       fetchData();
+      setMessage("");
     }
   };
 
@@ -53,7 +54,7 @@ const ChatBox = ({ assistant, options }) => {
     const chatWithoutQuotes = response.replace(/"/g, "");
 
     setChats([...chats, message, chatWithoutQuotes]);
-    setMessage("");
+
     setLoading(false);
   };
 
