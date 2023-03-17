@@ -155,7 +155,7 @@ a {
 
   .chatbox {
     margin: 10px;
-    max-height: 350px;
+    max-height: 280px;
     overflow-y: auto;
   }
 
