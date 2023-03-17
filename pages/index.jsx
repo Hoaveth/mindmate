@@ -3,7 +3,10 @@
 import Head from "next/head";
 import { Righteous } from "next/font/google";
 import ChatBox from "components/ChatBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getLocalStorageItem } from "utils/common";
+import { USER_KEY } from "utils/constants";
+import { useRouter } from "next/router";
 
 const roboto = Righteous({
   weight: "400",
@@ -33,7 +36,15 @@ const options = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   const [assistant, setAssistant] = useState();
+
+  useEffect(() => {
+    const user = getLocalStorageItem(USER_KEY);
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <div>
       <Head>

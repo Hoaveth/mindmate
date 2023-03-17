@@ -1,7 +1,21 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { getLocalStorageItem } from "utils/common";
+import { USER_KEY } from "utils/constants";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [displayName, setDisplayName] = useState("Made Possible by @Hoaveth");
+  const user = getLocalStorageItem(USER_KEY);
+
+  useEffect(() => {
+    const user = getLocalStorageItem(USER_KEY);
+    if (user) {
+      setDisplayName("Hi, " + user.displayName + " 👋");
+    }
+  }, [user]);
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-700 p-6 shadow-md">
       <div className="nav-container flex items-center justify-between  flex-wrap w-7/12 mx-auto sm:flex sm:items-center sm:justify-evenly">
@@ -30,7 +44,7 @@ const Navbar = () => {
               target="_blank"
               className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
             >
-              Made possible by @Hoaveth
+              <strong>{displayName}</strong>
             </a>
           </div>
         </div>
