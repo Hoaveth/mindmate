@@ -77,6 +77,9 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  height: 100%;
+  /* Needed for container's min-height  */
+
 }
 
 body {
@@ -106,11 +109,19 @@ a {
   overflow-wrap: break-word;
 }
 
+.new-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 2px;
 }
-
-
 
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
@@ -123,14 +134,12 @@ a {
   }
 }
 
+
 @media (max-width: 540px) {
   .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
     height: 200px;
+    margin-top: auto;
+    padding-bottom: 30px;
   }
 
   .text {

@@ -5,10 +5,10 @@ import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <div className="w-full new-container">
       <Navbar />
       <Component {...pageProps} />
       <Footer />
-    </>
+    </div>
   );
 }
