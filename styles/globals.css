@@ -94,7 +94,7 @@ a {
 
 .auth-form {
   width: 350px;
-  max-height: 400px;
+  max-height: 470px;
   overflow-y: auto;
 }
 
@@ -140,6 +140,11 @@ a {
     height: 200px;
     margin-top: auto;
     padding-bottom: 30px;
+  }
+
+  .auth-form {
+
+    max-height: 420px;
   }
 
   .text {
