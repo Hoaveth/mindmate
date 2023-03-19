@@ -26,8 +26,11 @@ The API Instance is deployed to GCP (Google Cloud Platform - Cloud Run)
 
 If you'd like to run your own instance of ChatGPT API Free, you can easily do so by following these steps:
 
-Obtain an OpenAI API Key from OpenAI API Keys.
-Star and fork this repository on GitHub.
-Configure your environment variables correctly.
-Deploy Docker locally or on Google Cloud Run.
-Setup rate limit locally or using Google Cloud Armor.
+1) Obtain an OpenAI API Key from OpenAI API Keys.
+2) Star and fork this repository on GitHub:  https://github.com/ayaka14732/ChatGPTAPIFree
+3) Configure your environment variables correctly.
+4) Deploy Docker locally or on Google Cloud Run.
+5) Setup rate limit locally or using Google Cloud Armor.
+
+
+
