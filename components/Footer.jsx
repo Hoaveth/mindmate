@@ -19,8 +19,10 @@ const Footer = () => {
         >
           <span className={styles.stack}>The Pod Box</span>
         </a>
-        <Link href="/feedback">
-          {" "}
+        <Link
+          href="/feedback"
+          className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+        >
           <span className={styles.stack}>Send Feedback</span>
         </Link>
       </h1>
