@@ -96,6 +96,8 @@ a {
   width: 350px;
   max-height: 470px;
   overflow-y: auto;
+  margin-top: 50px;
+
 }
 
 .chatbox {
@@ -143,7 +145,7 @@ a {
   }
 
   .auth-form {
-
+    margin-top: 10px;
     max-height: 420px;
   }
 

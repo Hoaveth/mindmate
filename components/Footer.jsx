@@ -19,13 +19,10 @@ const Footer = () => {
         >
           <span className={styles.stack}>The Pod Box</span>
         </a>
-        <a
-          href="https://tiktok.com/@devdotcode"
-          target="_blank"
-          className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
-        >
-          <span className={styles.stack}>DevDotCode</span>
-        </a>
+        <Link href="/feedback">
+          {" "}
+          <span className={styles.stack}>Send Feedback</span>
+        </Link>
       </h1>
       <a
         href="https://github.com/Hoaveth/mindmate"
