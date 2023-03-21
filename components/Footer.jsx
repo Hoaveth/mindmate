@@ -9,14 +9,13 @@ const Footer = () => {
   return (
     <div className={`${styles.container} footer bg-gray-700`}>
       <h1 className={styles.text}>
-        {user ? (
-          <Link
-            href="/"
-            className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
-          >
-            <span className={styles.stack}>Features</span>
-          </Link>
-        ) : null}
+        <Link
+          href="/"
+          className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+        >
+          <span className={styles.stack}>Features</span>
+        </Link>
+
         <a
           href="https://www.facebook.com/thepodbox"
           target="_blank"

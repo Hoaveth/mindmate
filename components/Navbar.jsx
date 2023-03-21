@@ -9,10 +9,12 @@ import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [displayName, setDisplayName] = useState("");
+
   const router = useRouter();
   const user = getLocalStorageItem(USER_KEY);
 
   useEffect(() => {
+    const user = getLocalStorageItem(USER_KEY);
     setDisplayName(
       user ? "Hi, " + user.displayName + " 👋" : "Made Possible by @Hoaveth"
     );

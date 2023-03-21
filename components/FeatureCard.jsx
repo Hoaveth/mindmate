@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,7 +8,7 @@ import { OPTION_KEY } from "utils/constants";
 const FeatureCard = ({ option }) => {
   return (
     <Link
-      href={`/feature/${option.link}`}
+      href={`/features/${option.link}`}
       onClick={() => setLocalStorageItem(OPTION_KEY, option)}
     >
       <div class="p-6 bg-gray-600 rounded-lg flex lg:w-96 sm:w-60 mt-5 align-center cursor-pointer">

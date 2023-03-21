@@ -11,7 +11,7 @@ const right = Righteous({
   subsets: ["latin"],
 });
 
-const MainPage = () => {
+const SmartRecruiter = () => {
   const router = useRouter();
   const option = getLocalStorageItem(OPTION_KEY);
   const [role, setRole] = useState();
@@ -24,11 +24,11 @@ const MainPage = () => {
       className={`${right.className} header-text-container flex flex-col justify-center mt-20 p-2 text-sm`}
     >
       <h1 className="text-3xl font-bold text-center">
-        <span className="font-bold">{option.value}</span>
+        <span className="font-bold">{option?.value}</span>
       </h1>
       <ChatBox role={role} option={option} />
     </div>
   );
 };
 
-export default MainPage;
+export default SmartRecruiter;
