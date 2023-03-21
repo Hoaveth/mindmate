@@ -1,14 +1,14 @@
 "use client";
-
 import Head from "next/head";
-import { Righteous } from "next/font/google";
 import ChatBox from "components/ChatBox";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
 import { useRouter } from "next/router";
+import FeatureCard from "components/FeatureCard";
+import { Righteous } from "next/font/google";
 
-const roboto = Righteous({
+const right = Righteous({
   weight: "400",
   style: ["normal"],
   subsets: ["latin"],
@@ -18,26 +18,27 @@ const options = [
   {
     value: "Assistant",
     label: "General Assistant",
-    instruction:
-      "Give the MindMate assistant any task or question that you have.",
+    description:
+      "MindMate will answer your questions and be amazed by how powerful it is.",
+    link: "assistant",
   },
   {
-    value:
-      "Smart Recruiter, kindly review this resume and give points to improve",
+    value: "Smart Recruiter",
     label: "Smart Recruiter",
-    instruction: "Paste your whole resume in the text box.",
+    description:
+      "Let the Smart Recruiter review your resume and see the results.",
+    link: "smart-recruiter",
   },
   {
     value: "Twitter Savvy",
     label: "Twitter Savvy",
-    instruction:
-      "Give the assistant any topic you want and tell it to generate a tweet for you.",
+    description: "Generate a tweet for your favorite application, Twitter!",
+    link: "tweets",
   },
 ];
 
 export default function Home() {
   const router = useRouter();
-  const [assistant, setAssistant] = useState();
 
   useEffect(() => {
     const user = getLocalStorageItem(USER_KEY);
@@ -45,6 +46,7 @@ export default function Home() {
       router.push("/login");
     }
   }, []);
+
   return (
     <div>
       <Head>
@@ -56,39 +58,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/mind.svg" />
       </Head>
-      <div
-        className={`${roboto.className} header-text-container flex justify-center mt-20 p-5 text-sm`}
-      >
-        <h1
-          className={
-            "header-text text-center text-6xl font-bold text-white-700/75"
-          }
-        >
-          USE ME AS A
-        </h1>
-        <div className="dropdown ml-8 relative inline-block">
-          <select
-            className=" block appearance-none w-full bg-gray-300 border border-gray-200 text-gray-700 mt-2 mr-1 ml-1 py-3 px-6 pr-15 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            onChange={(e) => setAssistant(e.target.value)}
-          >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 fill-current text-gray-800 ml-10  mr-1 "
-              viewBox="0 0 16 16"
-            >
-              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-            </svg>
-          </div>
-        </div>
+      <p className={`${right.className} text-center text-bold  mt-10 text-4xl`}>
+        FEATURES
+      </p>
+
+      <div className="flex flex-col flex-wrap items-center flex-wrap p-5">
+        {options.map((option, index) => {
+          return <FeatureCard option={option} />;
+        })}
       </div>
-      <ChatBox assistant={assistant} options={options} />
     </div>
   );
 }

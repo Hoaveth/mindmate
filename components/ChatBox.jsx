@@ -1,26 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
+import ChatLoad from "./ChatLoad";
 
-const ChatBox = ({ assistant, options }) => {
+const ChatBox = ({ role, option }) => {
   const [message, setMessage] = useState();
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
 
   useEffect(() => {
-    if (assistant) {
-      const value = options.filter((item) => item.value === assistant);
-      setSelectedOption(...value);
+    if (role) {
       setChats([]);
-    } else {
-      setSelectedOption(options[0]);
+      setSelectedOption(option);
     }
-  }, [assistant]);
+  }, [role]);
 
   const sendMessage = () => {
     setLoading(true);
-
     if (message) {
       setChats([...chats, message]);
       fetchData();
@@ -34,7 +31,7 @@ const ChatBox = ({ assistant, options }) => {
       messages: [
         {
           role: GPT_ROLE,
-          content: GPT_CONDITIONER + `${selectedOption.value}, ` + message,
+          content: GPT_CONDITIONER + ` ${selectedOption.value}, ` + message,
         },
       ],
     };
@@ -49,45 +46,38 @@ const ChatBox = ({ assistant, options }) => {
       body: JSON.stringify(formData),
     });
     const json = await res.json();
-    const response =
-      `<strong>MindMate:</strong>` + json.choices[0]?.message.content;
-    const chatWithoutQuotes = response.replace(/"/g, "");
+    const response = json.choices[0]?.message;
 
-    setChats([...chats, message, chatWithoutQuotes]);
+    setChats([...chats, message, response]);
 
     setLoading(false);
   };
 
   return (
-    <div className="chatbox bg-white shadow-lg rounded-lg mt-10  p-6 max-w-lg mx-auto">
+    <div className="chatbox bg-white shadow-lg rounded-lg mt-10 p-6 max-w-lg mx-auto w-100">
       <div className="flex flex-col gap-2">
         <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
-          <strong>Instructions:</strong> {selectedOption?.instruction}
+          <strong>Instructions:</strong> {selectedOption?.description}
         </div>
         {chats.length > 0 &&
           chats.map((chat, index) => {
             return (
               <div
                 key={index}
-                className={`${chat} bg-gray-100 p-2 rounded-xl text-sm text-black`}
-                dangerouslySetInnerHTML={{ __html: chat }}
-              ></div>
+                className={`${
+                  chat.content ? "bg-gray-300 text-gray-800" : null
+                } bg-gray-100 p-2 rounded-xl text-sm text-black`}
+              >
+                {chat.content ? chat.content.replace(/"/g, "") : chat}
+              </div>
             );
           })}
-        {loading ? (
-          <div className="bg-gray-100 p-4 rounded-xl text-sm text-black">
-            <div className="flex items-center justify-start space-x-2">
-              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-            </div>
-          </div>
-        ) : null}
+        {loading ? <ChatLoad /> : null}
       </div>
       <div className="flex items-center mt-4">
-        <input
+        <textarea
           type="text"
-          className="border border-gray-300 rounded-full px-4 py-2 w-full mr-2"
+          className="border border-gray-300 rounded  px-4 py-2 w-full mr-2 h-20"
           placeholder="Type your message here..."
           onChange={(e) => setMessage(e.target.value)}
           value={message}
@@ -95,7 +85,7 @@ const ChatBox = ({ assistant, options }) => {
         <button
           className={`${
             loading ? "bg-gray-500" : "bg-blue-500"
-          } text-white rounded-full h-10 w-10 flex items-center justify-center`}
+          } text-white rounded-full h-10 w-12 flex items-center justify-center`}
           onClick={() => sendMessage()}
         >
           <svg
