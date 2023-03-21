@@ -3,23 +3,32 @@ import { useEffect, useState } from "react";
 import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
 import ChatLoad from "./ChatLoad";
 
-const ChatBox = ({ role, option }) => {
+const ChatBox = ({ option }) => {
   const [message, setMessage] = useState();
+  const [userMessage, setUserMessage] = useState();
+
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
 
   useEffect(() => {
-    if (role) {
-      setChats([]);
-      setSelectedOption(option);
-    }
-  }, [role]);
+    setChats([]);
+    setSelectedOption(option);
+  }, []);
+
+  useEffect(() => {
+    const messageObject = {
+      author: "user",
+      message: message,
+    };
+    setUserMessage(messageObject);
+  }, [message]);
 
   const sendMessage = () => {
     setLoading(true);
+
     if (message) {
-      setChats([...chats, message]);
+      setChats([...chats, userMessage]);
       fetchData();
       setMessage("");
     }
@@ -46,10 +55,15 @@ const ChatBox = ({ role, option }) => {
       body: JSON.stringify(formData),
     });
     const json = await res.json();
-    const response = json.choices[0]?.message;
+    const response = json.choices[0]?.message.content;
 
-    setChats([...chats, message, response]);
+    const messageObject = {
+      author: "gpt",
+      message: response.replace(/"/g, ""),
+    };
 
+    setChats([...chats, userMessage, messageObject]);
+    setUserMessage("");
     setLoading(false);
   };
 
@@ -65,10 +79,10 @@ const ChatBox = ({ role, option }) => {
               <div
                 key={index}
                 className={`${
-                  chat.content ? "bg-gray-300 text-gray-800" : null
-                } bg-gray-100 p-2 rounded-xl text-sm text-black`}
+                  chat.author === "gpt" ? "bg-gray-300 text-gray-800" : null
+                } bg-gray-100 p-2 rounded-xl text-md text-black`}
               >
-                {chat.content ? chat.content.replace(/"/g, "") : chat}
+                {chat.message}
               </div>
             );
           })}
@@ -87,6 +101,7 @@ const ChatBox = ({ role, option }) => {
             loading ? "bg-gray-500" : "bg-blue-500"
           } text-white rounded-full h-10 w-12 flex items-center justify-center`}
           onClick={() => sendMessage()}
+          disabled={message ? false : true}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

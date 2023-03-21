@@ -8,7 +8,7 @@ import { OPTION_KEY } from "utils/constants";
 const FeatureCard = ({ option }) => {
   return (
     <Link
-      href={`/features/${option.link}`}
+      href={`/features/`}
       onClick={() => setLocalStorageItem(OPTION_KEY, option)}
     >
       <div class="p-6 bg-gray-600 rounded-lg flex lg:w-96 sm:w-60 mt-5 align-center cursor-pointer">
