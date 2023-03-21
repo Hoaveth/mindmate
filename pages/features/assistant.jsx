@@ -18,7 +18,7 @@ const SmartRecruiter = () => {
   const [role, setRole] = useState();
 
   useEffect(() => {
-    setRole(router.asPath.split("/").pop());
+    setRole(router?.asPath.split("/").pop());
   }, []);
   return (
     <div

@@ -1,6 +1,5 @@
 "use client";
 import Head from "next/head";
-import ChatBox from "components/ChatBox";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";

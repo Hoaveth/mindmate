@@ -59,8 +59,8 @@ const ChatBox = ({ role, option }) => {
         <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
           <strong>Instructions:</strong> {selectedOption?.description}
         </div>
-        {chats.length > 0 &&
-          chats.map((chat, index) => {
+        {chats?.length > 0 &&
+          chats?.map((chat, index) => {
             return (
               <div
                 key={index}
