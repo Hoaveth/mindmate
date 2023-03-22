@@ -51,7 +51,7 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-        <div className="order-3 lg:order-3 max-[450px]:mt-4">
+        <div className="order-3 lg:order-3   max-[391px]:mt-2">
           <div className="flex justify-between items-center">
             <a
               href="https://tiktok.com/@devdotcode"
