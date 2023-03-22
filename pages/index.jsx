@@ -54,8 +54,9 @@ export default function Home() {
           name="description"
           content="MindMate is an AI assistant built for you. It can generate a tweet for you, review your resume or help you study. This is created on top of OpenAI's API."
         />
+        <meta property="og:title" content="MindMate" key="title" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/mind.svg" />
+        <link rel="icon" href="/mind.svg" type="image/x-icon" />
       </Head>
       <p className={`${right.className} text-center text-bold  mt-10 text-4xl`}>
         FEATURES
@@ -63,7 +64,7 @@ export default function Home() {
 
       <div className="flex flex-col flex-wrap items-center flex-wrap p-5">
         {options.map((option, index) => {
-          return <FeatureCard option={option} />;
+          return <FeatureCard key={index} option={option} />;
         })}
       </div>
     </div>
