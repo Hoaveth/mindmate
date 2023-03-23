@@ -32,5 +32,5 @@ If you'd like to run your own instance of ChatGPT API Free, you can easily do so
 4) Deploy Docker locally or on Google Cloud Run.
 5) Setup rate limit locally or using Google Cloud Armor.
 
-
+## HELP US MAKE AI ACCESSIBLE TO ANYONE! FEEL FREE TO MAKE IMPROVEMENTS ON THIS PROJECT 😉
 
