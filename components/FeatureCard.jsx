@@ -5,36 +5,43 @@ import React from "react";
 import { setLocalStorageItem } from "utils/common";
 import { OPTION_KEY } from "utils/constants";
 
-const FeatureCard = ({ option }) => {
-  return (
-    <Link
-      href={`/features/`}
-      onClick={() => setLocalStorageItem(OPTION_KEY, option)}
+const FeatureCard = ({ option }) => (
+  <Link
+    href={`/features/`}
+    onClick={() => setLocalStorageItem(OPTION_KEY, option)}
+  >
+    <div
+      id={`${
+        option.img === "smart-recruiter"
+          ? "smart-recruiter-card"
+          : option.img === "twitter"
+          ? "twitter-card"
+          : "assist-card"
+      }`}
+      className="p-6 bg-white rounded-lg flex lg:w-96 sm:w-60 mt-5 align-center cursor-pointer border-solid border-2 border-white transition duration-200 ease-in-out"
     >
-      <div class="p-6 bg-gray-600 rounded-lg flex lg:w-96 sm:w-60 mt-5 align-center cursor-pointer">
-        <div class="mb-5">
-          <Image
-            width={50}
-            height={50}
-            alt={option.value}
-            src={
-              option.value === "Smart Recruiter"
-                ? "/person.svg"
-                : option.value === "Twitter Savvy"
-                ? "/twitter.svg"
-                : "/pen.svg"
-            }
-          />
-        </div>
-        <div className="mx-7">
-          <h3 class="text-lg font-bold mb-2">
-            <u>{option.value}</u>
-          </h3>
-          <p class="text-sm leading-6 text-white-600">{option.description}</p>
-        </div>
+      <div className="mb-5">
+        <Image
+          width={70}
+          height={70}
+          alt={option.value}
+          src={
+            option.img === "smart-recruiter"
+              ? `/features/${option.img}.png`
+              : option.img === "twitter"
+              ? `/features/${option.img}.png`
+              : "/features/assistant.png"
+          }
+        />
       </div>
-    </Link>
-  );
-};
+      <div className="mx-7">
+        <h3 className="text-xl font-medium mb-2 text-[var(--featured-text)]">
+          <u className="no-underline">{option.value}</u>
+        </h3>
+        <p className="text-sm leading-6 text-gray-500">{option.description}</p>
+      </div>
+    </div>
+  </Link>
+);
 
 export default FeatureCard;

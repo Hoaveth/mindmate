@@ -84,10 +84,10 @@ function LoginPage() {
         </div>
         <button
           type="submit"
-          class="relative inline-flex w-full items-center justify-center px-2 py-3 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm transition duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="relative inline-flex w-full items-center justify-center px-2 py-3 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm transition duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           {loading ? (
-            <span class="absolute inset-y-0  flex items-center justify-center mx-auto pl-3">
+            <span className="absolute inset-y-0  flex items-center justify-center mx-auto pl-3">
               <svg
                 class="w-5 h-5 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"

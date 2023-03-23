@@ -36,6 +36,10 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+  --featured-text: #374151;
+  --feature-card-assistant: #55b37a;
+  --feature-card-smart-recruiter: #f7c251;
+  --feature-card-twitter: #1792e8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -115,6 +119,18 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+#assist-card:hover {
+  border: 2px solid var(--feature-card-assistant);
+}
+
+#smart-recruiter-card:hover {
+  border: 2px solid var(--feature-card-smart-recruiter);
+}
+
+#twitter-card:hover {
+  border: 2px solid var(--feature-card-twitter);
 }
 
 #__next {

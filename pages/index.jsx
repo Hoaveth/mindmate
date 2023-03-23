@@ -20,6 +20,7 @@ const options = [
     description:
       "MindMate will answer your questions and be amazed by how powerful it is.",
     link: "assistant",
+    img: "assistant",
   },
   {
     value: "Smart Recruiter",
@@ -27,12 +28,14 @@ const options = [
     description:
       "Let the Smart Recruiter review your resume and see the results.",
     link: "smart-recruiter",
+    img: "smart-recruiter",
   },
   {
     value: "Twitter Savvy",
     label: "Twitter Savvy",
     description: "Generate a tweet for your favorite application, Twitter!",
     link: "tweets",
+    img: "twitter",
   },
 ];
 
@@ -47,7 +50,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Head>
         <title>MindMate</title>
         <meta
@@ -58,11 +61,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/mind.svg" type="image/x-icon" />
       </Head>
-      <p className={`${right.className} text-center text-bold  mt-10 text-4xl`}>
+      <p
+        className={`${right.className} text-center text-bold  mt-10 text-4xl text-white`}
+      >
         FEATURES
       </p>
 
-      <div className="flex flex-col flex-wrap items-center flex-wrap p-5">
+      <div className="flex flex-col flex-wrap items-center p-5">
         {options.map((option, index) => {
           return <FeatureCard key={index} option={option} />;
         })}
