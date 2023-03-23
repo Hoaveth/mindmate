@@ -8,20 +8,30 @@ import { loginUser } from "lib/auth";
 
 function LoginPage() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldError, setFieldError] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    //Todo: I think we should consider react hook form and yup
+    if (email === "") {
+      return setFieldError({ email: "Email is required" });
+    }
+    if (password === "") {
+      return setFieldError({ password: "Password is required" });
+    }
 
     setLoading(true);
     const login = await loginUser(email, password, setEmail);
 
     if (login.message) {
-      setError(login.message);
+      setError("Invalid email or password");
       setLoading(false);
       return;
     }
@@ -33,7 +43,7 @@ function LoginPage() {
   return (
     <div className="flex items-center justify-center mt-8">
       <form
-        className="bg-white p-6 rounded-lg shadow-lg auth-form"
+        className="bg-white p-6 rounded-lg shadow-lg auth-form text-slate-800"
         onSubmit={handleLogin}
       >
         <div className="flex justify-center">
@@ -60,12 +70,15 @@ function LoginPage() {
             Email
           </label>
           <input
-            className="bg-gray-600 border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+            className={`bg-transparent border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline ${
+              fieldError.email && "border border-red-500"
+            } `}
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <span className="text-red-500">{fieldError.email}</span>
         </div>
         <div className="mb-6">
           <label
@@ -75,12 +88,15 @@ function LoginPage() {
             Password
           </label>
           <input
-            className="bg-gray-600 border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`bg-transparent border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline  ${
+              fieldError.password && "border border-red-500"
+            }`}
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <span className="text-red-500">{fieldError.password}</span>
         </div>
         <button
           type="submit"
