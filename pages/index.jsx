@@ -1,4 +1,5 @@
 "use client";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
@@ -43,13 +44,23 @@ export default function Home() {
 
   useEffect(() => {
     const user = getLocalStorageItem(USER_KEY);
-    if (Object.keys(user).length === 0) {
+    if (!user) {
       router.push("/login");
     }
   }, []);
 
   return (
     <div className="min-h-screen">
+      <Head>
+        <title>MindMate</title>
+        <meta
+          name="description"
+          content="MindMate is an AI assistant built for you. It can generate a tweet for you, review your resume or help you study. This is created on top of OpenAI's API."
+        />
+        <meta property="og:title" content="MindMate" key="title" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/mind.svg" type="image/x-icon" />
+      </Head>
       <p
         className={`${right.className} text-center text-bold  mt-10 text-4xl text-white`}
       >
