@@ -97,11 +97,11 @@ const ChatBox = ({ option }) => {
           value={message}
         />
         <button
-          className={`${
-            loading ? "bg-gray-500" : "bg-blue-500"
+          className={`${loading ? "bg-gray-500" : "bg-blue-500"} ${
+            loading ? "cursor-not-allowed" : "cursor-pointer"
           } text-white rounded-full h-10 w-12 flex items-center justify-center`}
           onClick={() => sendMessage()}
-          disabled={message ? false : true}
+          disabled={loading}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
