@@ -10,6 +10,7 @@ const ChatBox = ({ option }) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setChats([]);
@@ -25,9 +26,8 @@ const ChatBox = ({ option }) => {
   }, [message]);
 
   const sendMessage = () => {
-    setLoading(true);
-
     if (message) {
+      setLoading(true);
       setChats([...chats, userMessage]);
       fetchData();
       setMessage("");
@@ -46,27 +46,32 @@ const ChatBox = ({ option }) => {
     };
 
     const apiURL = process.env.NEXT_PUBLIC_CHATGPT_API;
+    try {
+      const res = await fetch(apiURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const json = await res.json();
+      const response = json.choices[0]?.message.content;
 
-    const res = await fetch(apiURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const json = await res.json();
-    const response = json.choices[0]?.message.content;
+      const messageObject = {
+        author: "gpt",
+        message: response.replace(/"/g, ""),
+      };
 
-    const messageObject = {
-      author: "gpt",
-      message: response.replace(/"/g, ""),
-    };
-
-    setChats([...chats, userMessage, messageObject]);
-    setUserMessage("");
-    setLoading(false);
+      setChats([...chats, userMessage, messageObject]);
+      setUserMessage("");
+      setLoading(false);
+    } catch (error) {
+      setError("Something went wrong Please try again.");
+      setLoading(false);
+    }
   };
 
+  console.log("error", error);
   return (
     <div className="chatbox bg-white shadow-lg rounded-lg mt-10 p-6 max-w-lg mx-auto w-100">
       <div className="flex flex-col gap-2">
@@ -87,6 +92,7 @@ const ChatBox = ({ option }) => {
             );
           })}
         {loading ? <ChatLoad /> : null}
+        <span className="text-red-500 font-sans">{error}</span>
       </div>
       <div className="flex items-center mt-4">
         <textarea
