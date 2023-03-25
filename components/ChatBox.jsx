@@ -129,7 +129,7 @@ const ChatBox = ({ option }) => {
           <textarea
             ref={textareaRef}
             type="text"
-            className="p-0 w-full pl-2 pr-4 whitespace-pre-wrap resize-none max-h-[200px] overflow-y-hidden focus:right-0 focus-visible:ring-offset-0 border-0 focus:outline-none focus:shadow-outline"
+            className="p-0 w-full pl-2 pr-4 whitespace-pre-wrap resize-none bg-white text-black max-h-[200px] overflow-y-hidden focus:right-0 focus-visible:ring-offset-0 border-0 focus:outline-none focus:shadow-outline"
             placeholder="Type your message here..."
             onChange={(e) => setMessage(e.target.value)}
             value={message}
