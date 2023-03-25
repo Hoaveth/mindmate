@@ -29,7 +29,7 @@ function SignUpPage() {
   return (
     <div className="flex items-center justify-center mt-4">
       <form
-        className="bg-white p-6 rounded-lg shadow-lg auth-form"
+        className="bg-white p-6 rounded-lg shadow-lg auth-form text-slate-800"
         onSubmit={handleSignUp}
       >
         <div className="flex justify-center">
@@ -58,7 +58,7 @@ function SignUpPage() {
             Display Name
           </label>
           <input
-            className="bg-gray-600 border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="bg-transparent border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             id="displayName"
             value={displayName}
@@ -71,7 +71,7 @@ function SignUpPage() {
             Email
           </label>
           <input
-            className="bg-gray-600 border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="bg-transparent border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="email"
             id="email"
             value={email}
@@ -87,7 +87,7 @@ function SignUpPage() {
             Password
           </label>
           <input
-            className="bg-gray-600 border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="bg-transparent border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="password"
             id="password"
             value={password}
