@@ -21,7 +21,7 @@ const MainPage = () => {
     <div
       className={`${right.className} header-text-container flex flex-col justify-center mt-20 p-2 text-sm`}
     >
-      <h1 className="text-3xl font-bold text-center">
+      <h1 className="text-3xl font-bold text-center text-white">
         <span className="font-bold">{feature}</span>
       </h1>
       <ChatBox option={option} />
