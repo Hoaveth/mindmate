@@ -1,10 +1,11 @@
 .chatbox {
-    max-height: 700px;
-    overflow-y: auto;
-    scrollbar-width: thin !important;
+  max-height: 700px;
+  overflow-y: auto;
+  scrollbar-width: thin !important;
+  min-height: 500px;
 }
 
 .chat {
-    max-width: fit-content;
-    overflow-wrap: break-word;
+  max-width: fit-content;
+  overflow-wrap: break-word;
 }
