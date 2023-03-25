@@ -17,6 +17,16 @@ function LoginPage() {
     password: "",
   });
 
+  const handleInputChange = (e) => {
+    setEmail(e.target.value);
+    setFieldError({ email: "" });
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setFieldError({ password: "" });
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     //Todo: I think we should consider react hook form and yup
@@ -76,7 +86,7 @@ function LoginPage() {
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange}
           />
           <span className="text-red-500">{fieldError.email}</span>
         </div>
@@ -94,7 +104,7 @@ function LoginPage() {
             type="password"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
           />
           <span className="text-red-500">{fieldError.password}</span>
         </div>
