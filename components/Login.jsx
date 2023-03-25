@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { setLocalStorageItem } from "utils/common";
@@ -8,6 +8,9 @@ import { loginUser } from "lib/auth";
 
 function LoginPage() {
   const router = useRouter();
+
+  const emailRef = useRef(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +19,10 @@ function LoginPage() {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
@@ -80,6 +87,7 @@ function LoginPage() {
             Email
           </label>
           <input
+            ref={emailRef}
             className={`bg-transparent border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline ${
               fieldError.email && "border border-red-500"
             } `}

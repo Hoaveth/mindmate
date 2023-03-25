@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { auth } from "../lib/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
@@ -9,10 +9,16 @@ import { createUser } from "lib/auth";
 function SignUpPage() {
   const router = useRouter();
 
+  const displayNameRef = useRef(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    displayNameRef.current.focus();
+  }, []);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -58,6 +64,7 @@ function SignUpPage() {
             Display Name
           </label>
           <input
+            ref={displayNameRef}
             className="bg-transparent border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             id="displayName"
