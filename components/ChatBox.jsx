@@ -111,7 +111,7 @@ const ChatBox = ({ option }) => {
         {chats?.length > 0 &&
           chats?.map((chat, index) => {
             if (chat.author === "gpt") {
-              const gptResponse = string.split(/```([\s\S]*)```/);
+              const gptResponse = chat.message.split(/```([\s\S]*)```/);
               for (let i = 1; i < gptResponse.length; i += 2) {
                 gptResponse[i] = <CodeBlock key={i} code={gptResponse[i]} />;
               }
@@ -127,6 +127,17 @@ const ChatBox = ({ option }) => {
                 </div>
               );
             }
+
+            return (
+              <div
+                key={index}
+                className={`${
+                  chat.author === "gpt" ? "bg-gray-300 text-gray-800" : null
+                } bg-gray-100 p-2 rounded-xl text-md text-black`}
+              >
+                {chat.message}
+              </div>
+            );
           })}
         {loading && <ChatLoad />}
         <span className="text-red-500 font-sans">{error}</span>
