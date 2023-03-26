@@ -4,3 +4,4 @@ export const GPT_CONDITIONER = "You are a";
 
 export const USER_KEY = "user";
 export const OPTION_KEY = "option";
+export const AUTHOR_GPT = "gpt";
