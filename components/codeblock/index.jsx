@@ -16,7 +16,7 @@ export const CodeBlock = ({ code = "hello world" }) => {
   return (
     <pre>
       <div className="bg-slate-400/60 rounded-md my-2">
-        <div className="flex justify-end">
+        <div className="flex justify-end bg-slate-400/80">
           <div className="flex p-2">
             <CopyIcon />
             <button className="text-sm pl-1" onClick={() => copyFn(code)}>
