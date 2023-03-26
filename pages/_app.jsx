@@ -2,8 +2,20 @@ import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "components/Footer";
 import Head from "next/head";
+import { useEffect } from "react";
+import { getLocalStorageItem } from "utils/common";
+import { useRouter } from "next/router";
+import { USER_KEY } from "utils/constants";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = getLocalStorageItem(USER_KEY);
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <div className="w-full new-container">
       <Head>

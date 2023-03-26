@@ -132,7 +132,7 @@ a {
 
 .auth-form {
   width: 350px;
-  max-height: 470px;
+  max-height: 480px;
   overflow-y: auto;
   margin-top: 50px;
 }
