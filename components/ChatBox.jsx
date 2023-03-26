@@ -111,7 +111,7 @@ const ChatBox = ({ option }) => {
         {chats?.length > 0 &&
           chats?.map((chat, index) => {
             if (chat.author === "gpt") {
-              const gptResponse = string.split(/```([\s\S]*)```/);
+              const gptResponse = chat.message.split(/```([\s\S]*)```/);
               for (let i = 1; i < gptResponse.length; i += 2) {
                 gptResponse[i] = <CodeBlock key={i} code={gptResponse[i]} />;
               }
@@ -143,7 +143,9 @@ const ChatBox = ({ option }) => {
             value={message}
           />
           <button
-            className={`${loading ? "bg-gray-500" : "bg-blue-500"} ${
+            className={`${
+              loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
+            } ${
               loading ? "cursor-not-allowed" : "cursor-pointer"
             } text-white rounded-lg h-10 w-10 flex items-center justify-center absolute bottom-2 right-2`}
             onClick={() => sendMessage()}
