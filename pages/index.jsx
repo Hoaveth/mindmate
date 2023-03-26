@@ -5,13 +5,6 @@ import { getLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
 import { useRouter } from "next/router";
 import FeatureCard from "components/FeatureCard";
-// import { Righteous } from "next/font/google";
-
-// const right = Righteous({
-//   weight: "400",
-//   style: ["normal"],
-//   subsets: ["latin"],
-// });
 
 const options = [
   {

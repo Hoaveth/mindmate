@@ -2,8 +2,8 @@ import React from "react";
 import { AUTHOR_GPT } from "utils/constants";
 import { CodeBlock } from "./codeblock";
 
-const displayGPTResponse = (chat) => {
-  if (chat.message.includes("```")) {
+const displayResponse = (chat) => {
+  if (chat.message.includes("```") && AUTHOR_GPT === chat.author) {
     const gptResponse = chat.message.split(/```([\s\S]*)```/);
     for (let i = 1; i < gptResponse.length; i += 2) {
       gptResponse[i] = <CodeBlock key={i} code={gptResponse[i]} />;
@@ -21,7 +21,7 @@ const ChatMessage = ({ chat }) => {
         AUTHOR_GPT === chat.author ? "bg-gray-300 text-gray-800" : null
       } bg-gray-100 p-2 rounded-xl text-md text-black`}
     >
-      {AUTHOR_GPT === chat.author ? displayGPTResponse(chat) : chat.message}
+      {displayResponse(chat)}
     </div>
   );
 };
