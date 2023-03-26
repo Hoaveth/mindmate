@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { loginUser } from "lib/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
 import { setLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
-import { loginUser } from "lib/auth";
 
 function LoginPage() {
   const router = useRouter();
@@ -123,20 +123,20 @@ function LoginPage() {
           {loading ? (
             <span className="absolute inset-y-0  flex items-center justify-center mx-auto pl-3">
               <svg
-                class="w-5 h-5 animate-spin"
+                className="w-5 h-5 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
                 <circle
-                  class="opacity-25"
+                  className="opacity-25"
                   cx="12"
                   cy="12"
                   r="10"
                   stroke="currentColor"
-                  stroke-width="4"
+                  strokeWidth="4"
                 ></circle>
                 <path
-                  class="opacity-75"
+                  className="opacity-75"
                   fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm12 0a8 8 0 100-16v3a5 5 0 010 10v3l-2-1.5"
                 ></path>
