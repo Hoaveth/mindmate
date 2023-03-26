@@ -147,14 +147,21 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0.5rem;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+  border-radius: 9999px;
+  border-width: 1px;
 }
 
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 99999px;
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
