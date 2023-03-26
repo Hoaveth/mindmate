@@ -5,13 +5,6 @@ import { getLocalStorageItem } from "utils/common";
 import { USER_KEY } from "utils/constants";
 import { useRouter } from "next/router";
 import FeatureCard from "components/FeatureCard";
-import { Righteous } from "next/font/google";
-
-const right = Righteous({
-  weight: "400",
-  style: ["normal"],
-  subsets: ["latin"],
-});
 
 const options = [
   {
@@ -61,9 +54,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/mind.svg" type="image/x-icon" />
       </Head>
-      <p
-        className={`${right.className} text-center text-bold  mt-10 text-4xl text-white`}
-      >
+      <p className={`text-center text-bold  mt-10 text-4xl text-white`}>
         FEATURES
       </p>
 

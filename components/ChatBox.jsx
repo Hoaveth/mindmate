@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
+import {
+  AUTHOR_GPT,
+  GPT_CONDITIONER,
+  GPT_MODEL,
+  GPT_ROLE,
+} from "utils/constants";
 import ChatLoad from "./ChatLoad";
-import { CodeBlock } from "./codeblock";
+import ChatMessage from "./ChatMessage";
 
 const ChatBox = ({ option }) => {
   const [message, setMessage] = useState();
@@ -57,9 +62,9 @@ const ChatBox = ({ option }) => {
   };
 
   const sendMessage = () => {
+    setChats([...chats, userMessage]);
     if (message) {
       setLoading(true);
-      setChats([...chats, userMessage]);
       fetchData();
       setMessage("");
     }
@@ -94,9 +99,9 @@ const ChatBox = ({ option }) => {
       };
 
       setChats([...chats, userMessage, messageObject]);
-      setUserMessage("");
       setLoading(false);
     } catch (error) {
+      setUserMessage("");
       setError("Something went wrong Please try again.");
       setLoading(false);
     }
@@ -110,23 +115,7 @@ const ChatBox = ({ option }) => {
       <div className="flex flex-col gap-2 overflow-y-scroll">
         {chats?.length > 0 &&
           chats?.map((chat, index) => {
-            if (chat.author === "gpt") {
-              const gptResponse = chat.message.split(/```([\s\S]*)```/);
-              for (let i = 1; i < gptResponse.length; i += 2) {
-                gptResponse[i] = <CodeBlock key={i} code={gptResponse[i]} />;
-              }
-
-              return (
-                <div
-                  key={index}
-                  className={`${
-                    chat.author === "gpt" ? "bg-gray-300 text-gray-800" : null
-                  } bg-gray-100 p-2 rounded-xl text-md text-black`}
-                >
-                  {gptResponse}
-                </div>
-              );
-            }
+            return <ChatMessage index={index} chat={chat} />;
           })}
         {loading && <ChatLoad />}
         <span className="text-red-500 font-sans">{error}</span>
