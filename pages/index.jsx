@@ -1,9 +1,5 @@
 "use client";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { getLocalStorageItem } from "utils/common";
-import { USER_KEY } from "utils/constants";
-import { useRouter } from "next/router";
 import FeatureCard from "components/FeatureCard";
 
 const options = [
@@ -33,15 +29,6 @@ const options = [
 ];
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const user = getLocalStorageItem(USER_KEY);
-    if (!user) {
-      router.push("/login");
-    }
-  }, []);
-
   return (
     <div className="min-h-screen">
       <Head>
