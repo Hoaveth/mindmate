@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GPT_CONDITIONER, GPT_MODEL, GPT_ROLE } from "utils/constants";
 import ChatLoad from "./ChatLoad";
+import { CodeBlock } from "./codeblock";
 
 const ChatBox = ({ option }) => {
   const [message, setMessage] = useState();
@@ -49,7 +50,7 @@ const ChatBox = ({ option }) => {
   //run side effect every new messages to scroll at the bottom
   useEffect(() => {
     scrollToBottom();
-  }, [chats]);
+  }, [chats, userMessage]);
 
   const scrollToBottom = () => {
     newMessageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -103,22 +104,29 @@ const ChatBox = ({ option }) => {
 
   return (
     <div className="chatbox bg-white shadow-lg rounded-lg mt-10 p-6 max-w-lg mx-auto w-100 relative flex flex-col">
+      <div className="bg-gray-100 p-3 rounded-xl text-sm text-black my-2">
+        <strong>Instructions:</strong> {selectedOption?.description}
+      </div>
       <div className="flex flex-col gap-2 overflow-y-scroll">
-        <div className="bg-gray-100 p-2 rounded-xl text-sm text-black">
-          <strong>Instructions:</strong> {selectedOption?.description}
-        </div>
         {chats?.length > 0 &&
           chats?.map((chat, index) => {
-            return (
-              <div
-                key={index}
-                className={`${
-                  chat.author === "gpt" ? "bg-gray-300 text-gray-800" : null
-                } bg-gray-100 p-2 rounded-xl text-md text-black`}
-              >
-                {chat.message}
-              </div>
-            );
+            if (chat.author === "gpt") {
+              const gptResponse = chat.message.split(/```([\s\S]*)```/);
+              for (let i = 1; i < gptResponse.length; i += 2) {
+                gptResponse[i] = <CodeBlock key={i} code={gptResponse[i]} />;
+              }
+
+              return (
+                <div
+                  key={index}
+                  className={`${
+                    chat.author === "gpt" ? "bg-gray-300 text-gray-800" : null
+                  } bg-gray-100 p-2 rounded-xl text-md text-black`}
+                >
+                  {gptResponse}
+                </div>
+              );
+            }
           })}
         {loading && <ChatLoad />}
         <span className="text-red-500 font-sans">{error}</span>
@@ -135,7 +143,9 @@ const ChatBox = ({ option }) => {
             value={message}
           />
           <button
-            className={`${loading ? "bg-gray-500" : "bg-blue-500"} ${
+            className={`${
+              loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
+            } ${
               loading ? "cursor-not-allowed" : "cursor-pointer"
             } text-white rounded-lg h-10 w-10 flex items-center justify-center absolute bottom-2 right-2`}
             onClick={() => sendMessage()}
