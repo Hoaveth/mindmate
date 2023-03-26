@@ -54,7 +54,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/mind.svg" type="image/x-icon" />
       </Head>
-      <p className={`text-center text-bold  mt-10 text-4xl text-white`}>
+      <p className={`feature text-center text-bold  mt-10 text-4xl text-white`}>
         FEATURES
       </p>
 

@@ -55,6 +55,24 @@ p,
   font-family: "Montserrat" !important;
 }
 
+.feature {
+  font-family: "Montserrat Bold" !important;
+}
+
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url("../assets/fonts/montserrat-bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

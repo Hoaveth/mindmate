@@ -21,7 +21,7 @@ const MainPage = () => {
       className={`header-text-container flex flex-col justify-center mt-20 p-2 text-sm`}
     >
       <h1 className="text-3xl font-bold text-center text-white">
-        <span className="font-bold">{feature?.toUpperCase()}</span>
+        <span className="font-bold feature">{feature?.toUpperCase()}</span>
       </h1>
       <ChatBox option={option} />
     </div>
