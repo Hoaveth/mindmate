@@ -15,7 +15,7 @@ export const CodeBlock = ({ code = "hello world" }) => {
   };
   return (
     <pre>
-      <div className="bg-slate-400/60 rounded-md my-2">
+      <div className="bg-slate-400/60 rounded-md my-5">
         <div className="flex justify-end bg-slate-400/80">
           <div className="flex p-2">
             <CopyIcon />
@@ -24,7 +24,7 @@ export const CodeBlock = ({ code = "hello world" }) => {
             </button>
           </div>
         </div>
-        <div className="overflow-x-auto p-2">
+        <div className="overflow-x-auto p-2 min-h-[60px]">
           <code>{code}</code>
         </div>
       </div>

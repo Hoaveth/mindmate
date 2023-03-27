@@ -33,7 +33,8 @@ If you'd like to run your own instance of ChatGPT API Free, you can easily do so
 5) Setup rate limit locally or using Google Cloud Armor.
 
 ## HELP US MAKE AI ACCESSIBLE TO ANYONE! FEEL FREE TO MAKE IMPROVEMENTS ON THIS PROJECT 😉
-1) Create an Issue ticket
-2) Make a pull request
-3) Wait for review
+1) Create an Issue ticket.
+2) Create a branch based from 'dev' branch.
+3) After code changes, create a pull request to the 'dev' branch.
+4) Wait for a code review.
 
