@@ -115,7 +115,7 @@ const ChatBox = ({ option }) => {
       <div className="flex flex-col gap-2 overflow-y-scroll">
         {chats?.length > 0 &&
           chats?.map((chat, index) => {
-            return <ChatMessage index={index} chat={chat} />;
+            return <ChatMessage key={index} chat={chat} />;
           })}
         {loading && <ChatLoad />}
         <span className="text-red-500 font-sans">{error}</span>
