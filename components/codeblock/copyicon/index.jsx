@@ -7,7 +7,7 @@ export const CopyIcon = ({ height = "1em", width = "1em", ...etcProps }) => {
       stroke-width="2"
       viewBox="0 0 24 24"
       stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
       className="h-4 w-4"
       height={height}
       width={width}
