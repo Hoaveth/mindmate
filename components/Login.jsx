@@ -28,14 +28,8 @@ function LoginPage() {
 	//#endregion
 
 	//#region State
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
-	const [fieldError, setFieldError] = useState({
-		email: "",
-		password: "",
-	});
 	//#endregion
 
 	//#region UseEffect
