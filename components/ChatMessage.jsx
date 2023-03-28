@@ -3,10 +3,10 @@ import { AUTHOR_GPT } from "utils/constants";
 import { CodeBlock } from "./codeblock";
 
 const regExCodeBlock = /```([\s\S]*?)```/g;
-const regExCodeTerm = /`([\s\S]*?)`/;
+const regExCodeTerm = /`([\s\S]*?)`/g;
 
 const displayResponse = (chat) => {
-  if (chat.message.includes("```") && AUTHOR_GPT === chat.author) {
+  if (AUTHOR_GPT === chat.author) {
     /**
      * function for getting the [codes term] from chat message and codeBlocks
      *
@@ -50,8 +50,8 @@ const ChatMessage = ({ chat }) => {
   return (
     <div
       className={`${
-        AUTHOR_GPT === chat.author ? "bg-gray-300 text-gray-800" : null
-      } bg-gray-100 p-2 rounded-xl text-md text-black`}
+        AUTHOR_GPT === chat.author && "bg-gray-300 text-gray-800"
+      } bg-gray-100 p-2 rounded-xl text-md text-black whitespace-pre-line`}
     >
       {displayResponse(chat)}
     </div>
