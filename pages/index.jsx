@@ -47,7 +47,7 @@ export default function Home() {
 
       <div className="flex flex-col flex-wrap items-center p-5">
         {options.map((option, index) => {
-          return <FeatureCard key={index} option={option} />;
+          return <FeatureCard key={index} index={index} option={option} />;
         })}
       </div>
     </div>

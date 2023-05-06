@@ -35,7 +35,7 @@ function SignUpPage() {
   return (
     <div className="flex items-center justify-center mt-4">
       <form
-        className="bg-white p-6 rounded-lg shadow-lg auth-form text-slate-800"
+        className="bg-white p-6 rounded-lg shadow-lg auth-form text-slate-800 animate__animated animate__fadeInUp animate__faster"
         onSubmit={handleSignUp}
       >
         <div className="flex justify-center">
