@@ -108,7 +108,7 @@ const ChatBox = ({ option }) => {
   };
 
   return (
-    <div className="chatbox bg-white shadow-lg rounded-lg mt-10 p-6 max-w-lg mx-auto w-100 relative flex flex-col">
+    <div className="chatbox bg-white shadow-lg rounded-lg mt-10 p-6 max-w-lg mx-auto w-100 relative flex flex-col animate__animated animate__fadeInUp animate__faster">
       <div className="bg-gray-100 p-3 rounded-xl text-sm text-black my-2">
         <strong>Instructions:</strong> {selectedOption?.description}
       </div>

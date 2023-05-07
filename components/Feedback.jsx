@@ -18,7 +18,7 @@ const Feedback = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen animate__animated animate__fadeInUp animate__faster">
       <div className="bg-gray-700 p-6 rounded-lg shadow-md">
         <Link href="/" className="flex justify-center mb-5">
           <span>

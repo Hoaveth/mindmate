@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const ChatLoad = () => {
   return (
@@ -9,7 +9,7 @@ const ChatLoad = () => {
         <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ChatLoad;
+export default ChatLoad
